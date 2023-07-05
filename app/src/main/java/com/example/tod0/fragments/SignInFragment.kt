@@ -22,12 +22,10 @@ class SignInFragment : Fragment() {
     private lateinit var binding: FragmentSignInBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater , container , ViewGroup?,
+    savedInstanceState: Bundle?
     ): View? {
 
-        val inflater = null
-        val container = null
         binding = FragmentSignInBinding.inflate(inflater , container , false)
         return binding.root
     }
@@ -60,7 +58,6 @@ class SignInFragment : Fragment() {
                     auth.signInWithEmailAndPassword(email , pass).addOnCompleteListener(
                         OnCompleteListener {
                             if (it.isSuccessful){
-                                val text
                                 Toast.makeText(context , text:"Login Successfully" , Toast.LENGTH_SHORT).show()
                                 navControl.navigate( R.id.action_signInFragment_to_homeFragment)
                             }else{
