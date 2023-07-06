@@ -54,6 +54,7 @@ class SignInFragment : Fragment() {
 
             if (email.isNotEmpty() && pass.isNotEmpty()) {
 
+                    binding.progressBar.visibility = View.VISIBLE
                     auth.signInWithEmailAndPassword(email , pass).addOnCompleteListener(
                         OnCompleteListener {
                             if (it.isSuccessful){
@@ -62,7 +63,11 @@ class SignInFragment : Fragment() {
                             }else{
                                 Toast.makeText(context , it.exception?.message , Toast.LENGTH_SHORT).show()
                             }
+                            binding.progressBar.visibility = View.GONE
+
                         })
+
+            }else{
 
             }
         }
