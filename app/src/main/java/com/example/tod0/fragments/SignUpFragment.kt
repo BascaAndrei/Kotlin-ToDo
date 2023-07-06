@@ -3,22 +3,24 @@ package com.example.tod0.fragments
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.tod0.R
+import androidx.fragment.app.Fragment
 import com.example.tod0.databinding.FragmentSignUpBinding
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 
-class SignUpFragment : SignUpFragment(){
+class SignUpFragment : Fragment(){
 
     private lateinit var auth: FirebaseAuth
     private lateinit var navControl: NavController
     private lateinit var binding: FragmentSignUpBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater , container , ViewGroup?,
+        inflater: LayoutInflater , container : ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
@@ -54,7 +56,6 @@ class SignUpFragment : SignUpFragment(){
                 auth.createUserWithEmailAndPassword(email , pass).addOnCompleteListener(
                     OnCompleteListener {
                         if (it.isSuccessful){
-                            Toast.makeText(context , text:"Registered Successfully" , Toast.LENGTH_SHORT).show()
                             navControl.navigate( R.id.action_signUpFragment_to_homeFragment)
                         }else{
                             Toast.makeText(context , it.exception?.message , Toast.LENGTH_SHORT).show()

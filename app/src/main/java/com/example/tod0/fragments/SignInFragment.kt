@@ -10,7 +10,6 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.tod0.R
 import com.example.tod0.databinding.FragmentSignInBinding
-import com.example.tod0.databinding.FragmentSignUpBinding
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 
@@ -22,7 +21,7 @@ class SignInFragment : Fragment() {
     private lateinit var binding: FragmentSignInBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater , container , ViewGroup?,
+        inflater: LayoutInflater , container : ViewGroup?,
     savedInstanceState: Bundle?
     ): View? {
 
@@ -58,7 +57,7 @@ class SignInFragment : Fragment() {
                     auth.signInWithEmailAndPassword(email , pass).addOnCompleteListener(
                         OnCompleteListener {
                             if (it.isSuccessful){
-                                Toast.makeText(context , text:"Login Successfully" , Toast.LENGTH_SHORT).show()
+
                                 navControl.navigate( R.id.action_signInFragment_to_homeFragment)
                             }else{
                                 Toast.makeText(context , it.exception?.message , Toast.LENGTH_SHORT).show()
