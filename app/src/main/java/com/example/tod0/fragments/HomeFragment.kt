@@ -121,7 +121,7 @@ class HomeFragment : Fragment(), AddTodoPopupFragment.DialogueNextBtnClickListen
 
     override fun onUpdateTask(toDoData: ToDoData, todoEt: TextInputEditText) {
         val map = HashMap<String , Any>()
-        map[toDoData.taskId] = toDoData.task
+        map[toDoData.TaskId] = toDoData.task
         databaseRef.updateChildren(map).addOnCompleteListener {
             if (it.isSuccessful){
                 Toast.makeText(context , "Updated!" , Toast.LENGTH_SHORT).show()
