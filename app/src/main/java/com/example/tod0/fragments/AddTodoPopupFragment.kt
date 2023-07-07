@@ -45,6 +45,11 @@ private fun registerEvents(){
                Toast.makeText(context , "Please type some tasks!" , Toast.LENGTH_SHORT).show()
            }
        }
+
+    binding.todoClose.setOnClickListener {
+        dismiss()
+    }
+
      }
 
     interface DialogueNextBtnClickListener{
