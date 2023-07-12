@@ -24,7 +24,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 
-class HomeFragment : Fragment(), AddTodoPopupFragment.DialogueNextBtnClickListener,
+class HomeFragment(override val navControl: Any) : Fragment(), AddTodoPopupFragment.DialogueNextBtnClickListener,
     ToDoAdapter.ToDoAdapterClicksInterface {
 
     private val TAG = "HomeFragment"
@@ -48,6 +48,8 @@ class HomeFragment : Fragment(), AddTodoPopupFragment.DialogueNextBtnClickListen
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
         init(view)
         getDataFromFirebase()
         registerEvents()
@@ -64,7 +66,12 @@ class HomeFragment : Fragment(), AddTodoPopupFragment.DialogueNextBtnClickListen
            AddTodoPopupFragment.TAG
        )
       }
+        binding.btn1.setOnClickListener{
+            navControl.navigate(R.id.action_homeFragment_to_signInFragment)
+        }
     }
+
+
 
     private fun init(view : View){
         navController = Navigation.findNavController(view)
@@ -153,5 +160,9 @@ class HomeFragment : Fragment(), AddTodoPopupFragment.DialogueNextBtnClickListen
         popUpFragment!!.setListener(this)
         popUpFragment!!.show(childFragmentManager , AddTodoPopupFragment.TAG)
     }
+
+}
+
+private fun Any.navigate(actionHomefragmentToSigninfragment: Int) {
 
 }

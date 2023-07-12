@@ -76,7 +76,9 @@ private fun registerEvents(){
      }
 
     interface DialogueNextBtnClickListener{
-        fun onSaveTask(todo : String , todoEt : TextInputEditText)
+        val navControl: Any
+
+        fun onSaveTask(todo : String, todoEt : TextInputEditText)
         fun onUpdateTask(toDoData: ToDoData , todoEt : TextInputEditText)
     }
 
