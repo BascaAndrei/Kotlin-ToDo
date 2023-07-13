@@ -7,7 +7,6 @@
     tools:context=".fragments.SignInFragment">
 
     <ImageView
-        android:id="@+id/nextBtn"
         android:layout_width="wrap_content"
         android:layout_height="200dp"
         android:scaleType="fitXY"
@@ -128,6 +127,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <ImageView
+        android:id="@+id/nextBtn"
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_marginTop="16dp"

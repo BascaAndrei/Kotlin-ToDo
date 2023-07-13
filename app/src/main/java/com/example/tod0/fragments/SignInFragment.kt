@@ -58,8 +58,7 @@ class SignInFragment : Fragment() {
                     auth.signInWithEmailAndPassword(email , pass).addOnCompleteListener(
                         OnCompleteListener {
                             if (it.isSuccessful){
-
-                                navControl.navigate( R.id.action_signInFragment_to_homeFragment)
+                                navControl.navigate(R.id.action_signInFragment_to_homeFragment)
                             }else{
                                 Toast.makeText(context , it.exception?.message , Toast.LENGTH_SHORT).show()
                             }

@@ -13,7 +13,7 @@ import com.example.tod0.databinding.FragmentSignUpBinding
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 
-class SignUpFragment : Fragment(){
+class SignUpFragment : Fragment() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var navControl: NavController

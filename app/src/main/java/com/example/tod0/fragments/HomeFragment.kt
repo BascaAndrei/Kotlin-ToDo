@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -23,8 +21,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-
-class HomeFragment(override val navControl: Any) : Fragment(), AddTodoPopupFragment.DialogueNextBtnClickListener,
+class HomeFragment : Fragment(), AddTodoPopupFragment.DialogueNextBtnClickListener,
     ToDoAdapter.ToDoAdapterClicksInterface {
 
     private val TAG = "HomeFragment"
@@ -47,13 +44,11 @@ class HomeFragment(override val navControl: Any) : Fragment(), AddTodoPopupFragm
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-
         init(view)
         getDataFromFirebase()
         registerEvents()
     }
+
 
     private fun registerEvents(){
       binding.addBtnHome.setOnClickListener {
@@ -66,12 +61,12 @@ class HomeFragment(override val navControl: Any) : Fragment(), AddTodoPopupFragm
            AddTodoPopupFragment.TAG
        )
       }
+
         binding.btn1.setOnClickListener{
-            navControl.navigate(R.id.action_homeFragment_to_signInFragment)
+            auth.signOut()
+            navController.navigate(R.id.action_homeFragment_to_signInFragment)
         }
     }
-
-
 
     private fun init(view : View){
         navController = Navigation.findNavController(view)
@@ -92,8 +87,8 @@ class HomeFragment(override val navControl: Any) : Fragment(), AddTodoPopupFragm
            override fun onDataChange(snapshot: DataSnapshot) {
                mList.clear()
                for (taskSnapshot in snapshot.children){
-                   val todoTask = taskSnapshot.key?.let{
-                       ToDoData(it , taskSnapshot.value.toString())
+                   val todoTask = taskSnapshot.key?.let {
+                       ToDoData(it, taskSnapshot.value.toString())
                    }
 
                    if (todoTask !=null) {
@@ -133,7 +128,7 @@ class HomeFragment(override val navControl: Any) : Fragment(), AddTodoPopupFragm
             if (it.isSuccessful){
                 Toast.makeText(context , "Updated!" , Toast.LENGTH_SHORT).show()
                 todoEt.text = null
-            }else{
+            } else {
                 Toast.makeText(context , it.exception?.message , Toast.LENGTH_SHORT).show()
             }
 
@@ -146,7 +141,7 @@ class HomeFragment(override val navControl: Any) : Fragment(), AddTodoPopupFragm
         databaseRef.child(toDoData.TaskId).removeValue().addOnCompleteListener {
             if (it.isSuccessful){
                 Toast.makeText(context , "Deleted!" , Toast.LENGTH_SHORT).show()
-            }else{
+            } else {
                 Toast.makeText(context , it.exception?.message , Toast.LENGTH_SHORT).show()
             }
         }
@@ -163,6 +158,3 @@ class HomeFragment(override val navControl: Any) : Fragment(), AddTodoPopupFragm
 
 }
 
-private fun Any.navigate(actionHomefragmentToSigninfragment: Int) {
-
-}

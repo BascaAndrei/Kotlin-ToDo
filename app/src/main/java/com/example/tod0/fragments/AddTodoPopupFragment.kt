@@ -21,6 +21,7 @@ class AddTodoPopupFragment : DialogFragment() {
     fun setListener(listener : DialogueNextBtnClickListener){
         this.listener = listener
     }
+
     companion object{
         const val TAG = "AddTodoPopupFragment"
 
@@ -31,6 +32,7 @@ class AddTodoPopupFragment : DialogFragment() {
                 putString("task" , task)
             }
         }
+
     }
 
     override fun onCreateView(
@@ -38,7 +40,7 @@ class AddTodoPopupFragment : DialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentAddTodoPopupBinding.inflate(inflater , container , false)
+        binding = FragmentAddTodoPopupBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -46,7 +48,7 @@ class AddTodoPopupFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
       if (arguments !=null){
-          toDoData = ToDoData(arguments?.getString("taskId").toString() ,
+          toDoData = ToDoData(arguments?.getString("taskId").toString(),
                               arguments?.getString("task").toString()
           )
       binding.todoEt.setText(toDoData?.task)
@@ -54,32 +56,30 @@ class AddTodoPopupFragment : DialogFragment() {
         registerEvents()
     }
 
-private fun registerEvents(){
+    private fun registerEvents(){
        binding.todoNextBtn.setOnClickListener {
            val todoTask = binding.todoEt.text.toString()
            if (todoTask.isNotEmpty()){
                if (toDoData == null){
-                   listener.onSaveTask(todoTask , binding.todoEt)
-               }else{
+                   listener.onSaveTask(todoTask, binding.todoEt)
+               } else {
                    toDoData?.task = todoTask
-                   listener.onUpdateTask(toDoData!! , binding.todoEt)
+                   listener.onUpdateTask(toDoData!!, binding.todoEt)
                }
            }else{
                Toast.makeText(context , "Please type some tasks!" , Toast.LENGTH_SHORT).show()
            }
        }
 
-    binding.todoClose.setOnClickListener {
+        binding.todoClose.setOnClickListener {
         dismiss()
-    }
+        }
 
      }
 
-    interface DialogueNextBtnClickListener{
-        val navControl: Any
-
+    interface DialogueNextBtnClickListener {
         fun onSaveTask(todo : String, todoEt : TextInputEditText)
         fun onUpdateTask(toDoData: ToDoData , todoEt : TextInputEditText)
     }
 
-     }
+}
